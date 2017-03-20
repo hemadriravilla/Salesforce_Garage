@@ -1,0 +1,21 @@
+<apex:page controller="buttonenable">
+    <apex:form >
+    <script>
+        function myFunction() {
+        document.getElementById("Submit").disabled = false;
+            }
+    </script>
+    <apex:pageBlock >
+        enter student name:<apex:inputText value="{!student}"/><br/>
+        <apex:commandButton value="Submit" action="{!submitbutton}"/><br/>
+            <apex:pageBlockTable value="{!searchstudent}" var="se">
+    
+                   <apex:column value="{!se.Name}"/>
+             </apex:pageBlockTable>
+        <apex:commandButton onblur="myFunction" value="tryit1" action="{!tryit}"/><br/>
+         
+         output is:{!studentcount}<br/>
+    </apex:pageBlock>
+    </apex:form>/>
+  
+</apex:page>

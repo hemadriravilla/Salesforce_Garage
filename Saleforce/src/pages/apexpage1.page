@@ -1,0 +1,32 @@
+<apex:page controller="multipleOP">
+    <apex:form >
+        Enter Number:<apex:inputText value="{!myinputvalue}"/><br/>
+        <apex:commandButton value="Submit" action="{!myLogic}"/><br/>
+        
+        <apex:Repeat value="{!myOutputValue}" var="myOut">
+            
+            <table border="1" style="width:100%">
+              <tr>
+                <td>{!myOut}</td>
+                <td>{!myOut}</td>
+               
+              </tr>
+              <style>
+                table, th, td {
+                    cellpadding:1px;
+                    cellspacing:1px;
+                }
+                th{
+                    background:#B4F114;
+                }
+                .active {
+                    background:red;
+                }
+            </style>
+            </table>
+            
+
+        </apex:Repeat>
+        
+    </apex:form>
+</apex:page>

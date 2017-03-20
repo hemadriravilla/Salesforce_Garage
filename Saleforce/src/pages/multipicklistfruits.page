@@ -1,0 +1,35 @@
+<apex:page controller="multipicklistfruits">
+    <apex:form id="frm">
+     <apex:actionstatus id="actionstatus">
+                                        <apex:facet name="start">
+                                            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                                                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                                                    <img class="waitingImage" src="/img/loading.gif"  title="Please Wait..." />
+                                                    <span class="waitingDescription">Processing...</span>
+                                                </div>
+                                            </div>
+                                        </apex:facet>
+                                    </apex:actionstatus>
+        <apex:panelGrid columns="3" id="abcd">
+            <apex:selectList id="sel1" value="{!leftselected}" multiselect="true" style="width:100px" size="5">
+                <apex:selectOptions value="{!unselectedvalues}" />
+            </apex:selectList>
+                <apex:panelGroup >
+                    <br/>
+                    <apex:commandButton value=">" action="{!selectclick}" rerender="abcd" status="actionstatus"/>
+                        
+                        <br/><br/>
+                    <apex:commandButton value="<" action="{!unselectclick}" rerender="abcd" status="actionstatus" /> 
+                      
+                </apex:panelGroup>
+            <apex:selectList id="sel2" value="{!rightselected}" multiselect="true" style="width:100px" size="5">
+                <apex:selectOptions value="{!SelectedValues}" />
+            </apex:selectList>
+        </apex:panelGrid>
+        
+        <apex:commandButton value="Show Selected Values" action="{!showSelected}" rerender="frm" status="actionstatus" />
+        
+        Selected Values are : {!rightselected}
+        
+    </apex:form>
+</apex:page>

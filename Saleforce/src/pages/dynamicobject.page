@@ -1,0 +1,64 @@
+<apex:page controller="objectController" sidebar="false">
+<apex:form > 
+      <apex:pageBlock >
+      <apex:actionstatus id="actionstatus">
+                                        <apex:facet name="start">
+                                            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                                                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                                                    <img class="waitingImage" src="/img/loading.gif"  title="Please Wait..." />
+                                                    <span class="waitingDescription">Processing...</span>
+                                                </div>
+                                            </div>
+                                        </apex:facet>
+                                    </apex:actionstatus>
+          <apex:pageBlockSection columns="1">
+
+              <apex:pageBlockSectionItem >
+                  <apex:outputlabel value="Object Names :"/> 
+                      <apex:actionRegion >      
+                           <apex:selectList value="{!selectedObject}" size="1">
+                                    <apex:selectOptions value="{!ObjectNames}"/>
+                                    <apex:actionSupport event="onchange" rerender="myFields" status="actionstatus"/>
+                            </apex:selectList>
+                     </apex:actionRegion>                         
+              </apex:pageBlockSectionItem>
+               </apex:pageBlockSection>
+              </apex:pageBlock>
+                    <apex:outputlabel value="Field Names :" />   
+                      <apex:outputPanel id="myFields">   
+                        <apex:panelGrid columns="5" id="abcd">
+                        <div align="center" draggable="false" >
+                           <apex:selectList id="sel1" value="{!leftselected}" multiselect="true" style="width:100px" size="6">
+                                <apex:selectOptions value="{!ObjectFields}"/>
+                            </apex:selectList>
+                             <apex:outputPanel >
+                            <apex:commandButton value="Add"  style="margin-right:650px;margin-left:10px;" action="{!selectclick}" rerender="abcd" status="actionstatus"/>
+                            
+                            <apex:commandButton value="Remove" style="margin-right:650px;margin-left:10px;" action="{!unselectclick}" rerender="abcd"  status="actionstatus"/>
+                              </apex:outputPanel>
+                            <apex:selectList id="sel2" value="{!rightselected}" multiselect="true" style="width:100px" size="5">
+                            <apex:selectOptions value="{!SelectedValues}" />
+                            </apex:selectList>
+                            </div>
+                        </apex:panelGrid>    
+                     
+                     </apex:outputPanel>
+                     
+                     <div align="center" draggable="false" >
+                       <apex:commandButton value="Submit" action="{!showSelected}"   status="actionstatus" />
+                      </div>
+                      <apex:outputPanel rendered="{!renderedVariable}">
+                      Generated Query :<apex:outputText value="{!showSelectedValues}" />
+                      
+                     
+                      <div align="center" draggable="false" >
+                       <apex:commandButton value="generate" action="{!querygenerate}" rerender="abcd" status="actionstatus"/><br/><br/>
+                       </div>
+                       
+                      
+                       AllObjectData:{!selectedObjQuery}
+                       
+                       </apex:outputPanel>
+       
+  </apex:form>
+</apex:page>

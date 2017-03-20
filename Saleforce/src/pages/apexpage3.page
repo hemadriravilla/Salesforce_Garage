@@ -1,0 +1,18 @@
+<apex:page controller="wraperclass">
+  <apex:form >
+     <apex:pageBlock >
+        enter number:<apex:inputText value="{!inputtext}"/>
+        <apex:commandButton value="submit" action="{!runmethod}" />
+        <apex:pageBlockTable value="{!allwcs}" var="anyname">
+        <apex:column >
+           <apex:inputCheckbox value="{!anyname.b}"/>
+         </apex:column>
+         <apex:column value="{!anyname.odd}" headerValue="odd"/>
+         <apex:column value="{!anyname.even}" headerValue="even"/>
+        </apex:pageBlockTable>
+        <apex:commandButton value="calculate" action="{!calculatedata}"/>
+        your output is:{!myoutput}
+     </apex:pageBlock>
+  </apex:form>
+  
+</apex:page>

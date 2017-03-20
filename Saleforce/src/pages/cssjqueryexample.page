@@ -1,0 +1,66 @@
+<apex:page COntroller="CSSJqueryExample">
+          
+          <apex:stylesheet value="{!URLFOR($Resource.CSS1)}"/>
+           <apex:stylesheet value="{!URLFOR($Resource.CSS2)}"/>
+       
+        <!--- <apex:includeScript value="{!$Resource.JS1}"/>
+         <apex:includeScript value="{!$Resource.JS2}"/>
+         <apex:includeScript value="{!$Resource.JS3}"/>--->
+     
+          <script type='text/javascript' src='//code.jquery.com/jquery-1.11.1.min.js'/>
+          <script type='text/javascript' src='//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js'/>
+          <script type='text/javascript' src='//cdn.datatables.net/plug-ins/1.10.7/integration/jqueryui/dataTables.jqueryui.js'/>
+      
+              
+  //This bellow CODE SEARCH STRING ONLY            
+              
+              
+       <script>
+         $(document).ready(function() {
+    $('#example').dataTable();
+} );
+           
+            </script>
+            
+       
+            
+     
+              
+              
+     <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>AccountNumber</th>
+                <th>Fax</th>
+                <th>Phone</th>
+                <th>Number of Employees</th>
+                
+            </tr>
+        </thead>
+ 
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>AccountNumber</th>
+                <th>Fax</th>
+                <th>Phone</th>
+                <th>Number of Employees</th>
+            </tr>
+        </tfoot>
+ 
+        <tbody>
+            <apex:repeat value="{!allAccts}" var="accts">
+                <tr>
+                    <td>{!accts.Name}</td>
+                    <td>{!accts.AccountNumber}</td>
+                    <td>{!accts.Fax}</td>
+                    <td>{!accts.phone}</td>
+                    <td>{!accts.NumberOfEmployees}</td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+
+  
+</apex:page>

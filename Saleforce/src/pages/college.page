@@ -1,0 +1,100 @@
+<apex:page controller="college"  >
+         <apex:stylesheet value="{!URLFOR($Resource.CSS1)}"/>
+         <apex:stylesheet value="{!URLFOR($Resource.CSS2)}"/>
+        <link rel="stylesheet"  type="text/css" href="/resources/htdocs/css/basic.css"/>
+        <link rel="stylesheet"  type="text/css" href="[generatedId]/basic.css"/>
+      <apex:includeScript value="{!$Resource.JS1}"/>
+      <apex:includeScript value="{!$Resource.JS2}"/>
+      <apex:includeScript value="{!$Resource.JS3}"/>
+     
+      
+      <script>
+         $(document).ready(function() {
+                $('#example').dataTable();
+         } );        
+        
+     </script>        
+
+            <apex:form >
+                
+                        <apex:commandButton value="Print" onclick="window.print();"/>
+                           <apex:actionstatus id="actionstatus">
+                                        <apex:facet name="start">
+                                            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                                                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                                                    <img class="waitingImage" src="/img/loading.gif"  title="Please Wait..." />
+                                                    <span class="waitingDescription">Processing...</span>
+                                                </div>
+                                            </div>
+                                        </apex:facet>
+                                    </apex:actionstatus>
+                                            
+                                <apex:pageBlock >
+                                    <div class="thicker">               
+                                         Student ID:<span><apex:inputText value="{!myinput}"/></span>                       
+                                    </div>                            
+                                    
+                                    <div align="center" draggable="false" >
+               
+                                        <apex:commandButton value="generate" action="{!searchstudent}"   rendered="true"  status="actionstatus" />
+               
+                                    </div>
+                                </apex:pageBlock>
+                           
+                        
+                          <apex:outputPanel rendered="{!renderedvariable}" id="xyz" >              
+                                   
+                                <table id="example"  class="display"  width="100%" >
+                                <thead>
+                                    <tr>
+                                        <th>Sudent Name:</th>
+                                        <th>Age:</th>
+                                        <th>Class:</th>
+                                        <th>Total Amount:</th>
+                                                                                               
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   <apex:repeat value="{!studentobject}" var="r" >
+                                   <tr>
+                                     <td>{!r.Student_Name__c}</td>
+                                      <td>{!r.Age__c}</td>
+                                     <td>{!r.Class__r.Name}</td>
+                                     <td>{!r.Amount__c}</td>                                     
+                                    </tr>
+                                  </apex:repeat>                                  
+                                  </tbody>
+                                  
+                                 </table>            
+                                     </apex:outputPanel>
+                                
+                               <apex:outputPanel rendered="{!renderedvariable}"  >  
+                                <apex:pageBlock title="current Pay Fees:" mode="edit" >
+                                    <div class="row">
+                                        
+                                        <apex:dataTable value="{!f}" var="xyz" columnsWidth="10%">
+                                               
+                                            <tr>
+                                              <apex:column >
+                                                    <td><h1>Mode Of Payment:</h1> </td><td><apex:inputfield value="{!xyz.Mode_Of_Payment__c}"/></td>
+                                               
+                                                    <td><h1> Student Id:</h1></td><td><apex:inputField value="{!xyz.Student__c}"/>  </td>            
+                                               
+                                                   <td>  <h1>Month </h1></td>:<td><apex:inputField value="{!xyz.Month__c}"/></td>              
+                                               
+                                                    <td><h1>Current Fees</h1></td><td><apex:inputField value="{!xyz.Current_Fee_Pay__c}"/> </td>             
+                                              </apex:column>
+                                            </tr>
+                                 
+                                        </apex:dataTable>                                             
+                                        <div align="center" draggable="false" >
+                                            <apex:commandButton value="payfees" action="{!payfees}" status="actionstatus"/>
+                                        </div>
+                                    </div>
+                                </apex:pageBlock>                  
+                           
+                               </apex:outputPanel>             
+                
+            </apex:form>
+        
+    </apex:page>

@@ -1,0 +1,65 @@
+<apex:page controller="treeviewcon" sidebar="false" showHeader="false">
+<html>
+<head>
+    <apex:stylesheet value="{!URLFOR($Resource.CSS1)}"/>
+     <apex:stylesheet value="{!URLFOR($Resource.CSS2)}"/>
+     <link rel="stylesheet" href="{!URLFOR($Resource.Jtreeview,'Jquerytreeview/jquery.treeview.css')}"/>
+    <script src="{!URLFOR($Resource.Jtreeview,'Jquerytreeview/jquery.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.Jtreeview,'Jquerytreeview/jquery.cookie.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.Jtreeview,'Jquerytreeview/jquery.treeview.js')}" type="text/javascript"></script>
+    <!-- Latest compiled and minified CSS -->
+     
+     <apex:stylesheet value="http://jquery.bassistance.de/treeview/jquery.treeview.css"/>
+    <apex:includeScript value="http://jquery.bassistance.de/treeview/lib/jquery.js"/>
+    <apex:includeScript value="http://jquery.bassistance.de/treeview/lib/jquery.cookie.js"/>
+    <apex:includeScript value="http://jquery.bassistance.de/treeview/jquery.treeview.js"/>
+    <apex:includeScript value="http://jquery.bassistance.de/treeview/demo/demo.js"/>
+      <apex:includeScript value="{!$Resource.JS1}"/>
+      <apex:includeScript value="{!$Resource.JS2}"/>
+      <apex:includeScript value="{!$Resource.JS3}"/>
+     
+  <style type="text/css">
+  #browser {
+    font-family: Verdana, helvetica, arial, sans-serif;
+    font-size: 120%;
+    font-weight:bold;
+  }
+  
+  </style>
+  <script type="text/javascript">
+        $(function() {
+            $("#tree").treeview({
+                collapsed: false,
+                animated: "medium",
+                control:"#sidetreecontrol",
+                persist: "location"
+            });
+            $(".radio").treeview({
+             });
+        })
+</script>
+</head>
+<body><br/><br/>
+<div style="width:300px;margin-left:50px;">
+<apex:pageBlock >
+  <ul id="tree" class="filetree">
+    <apex:repeat value="{!accnts}" var="acc">
+    <li class="closed"><span class="folder" >{!acc.name}</span>
+        <ul>
+            <apex:repeat value="{!acc.contacts}" var="c">
+            <li><span class="folder">{!c.name}</span></li>
+                <ul>
+                       <apex:repeat value="{!acc.Cases}" var="b">
+                       <li><span class="file"><a href="/{!b.id}" target="_blank">{!b.CaseNumber}</a></span></li>
+                        </apex:repeat>
+                </ul>
+                </apex:repeat>
+        </ul>
+    </li>
+    </apex:repeat>
+   </ul>
+   </apex:pageBlock>
+   </div>
+</body>
+</html>
+</apex:page>

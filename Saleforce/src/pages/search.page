@@ -1,0 +1,18 @@
+<apex:page controller="search" sidebar="false" showHeader="false">
+
+<apex:form >
+
+  <tbody>
+            <apex:repeat value="{!allAccts}" var="accts">
+                <tr>
+                    <td>{!accts.Name}</td>
+                    <td>{!accts.AccountNumber}</td>
+                    <td>{!accts.Fax}</td>
+                    <td>{!accts.phone}</td>
+                    <td>{!accts.NumberOfEmployees}</td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+        </apex:form>
+        
+        </apex:page>

@@ -1,0 +1,89 @@
+<apex:page standardController="Account" sidebar="false" title="Hemadri Home Page" showHeader="false"  >
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+<script>
+     $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+    });
+</script>
+<script>
+$(document).ready(function() {
+  $('a').click(function(event) {
+      window.open($(this).attr("href"), "popupWindow", "width=600,height=600,scrollbars=yes");
+      return false;
+  });
+});
+</script>
+<apex:includeScript value="{!URLFOR($Resource.Bootstrap, 'JS1/JS2/JS3/JS4/basic.js')}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"  media="screen" />
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <!-- Bootstrap -->
+         
+ 
+ <body background="{!$Resource.SalesforceImage}" width="1000" height="750" >
+ 
+ <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" rel="home" href="https://ap2.salesforce.com/_ui/core/userprofile/UserProfilePage?tab=sfdc.ProfilePlatformFeed">Ravilla's</a>
+    </div>
+    
+    <div class="collapse navbar-collapse">
+        
+        <ul class="nav navbar-nav">
+            <li class="active"><li><a href="https://ap2.salesforce.com/home/home.jsp" target="_blank">Home</a></li></li>
+            <li><a href="https://ap2.salesforce.com/apexpages/setup/listApexPage.apexp?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevToolsIntegrate&setupid=ApexPages" target="_blank">VF PageS</a></li>
+            <li><a href="https://ap2.salesforce.com/01p?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevToolsIntegrate&setupid=ApexClasses" target="_blank">Classes</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">VF Page List <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://ap2.salesforce.com/06628000001JSkv" target="_blank" >Button Enable</a></li>
+                <li><a href="https://ap2.salesforce.com/06628000001JAUL" target="_blank">College</a></li>
+                <li class="divider"></li>
+                <li><a href="https://ap2.salesforce.com/06628000001KB32" target="_blank">treestructure</a></li>
+                <li class="divider"></li>
+                <li><a href="https://ap2.salesforce.com/06628000001JpCx" target="_blank"> dynamicobject</a></li>
+              </ul>
+            </li>
+        
+        
+        <li class="dropdown pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="https://ap2.salesforce.com/setup/forcecomHomepage.apexp?setupid=ForceCom&retURL=%2F_ui%2Fcore%2Fuserprofile%2FUserProfilePage" target="_blank">SetUp</a></li>
+                <li><a href="#">Settings</a></li>
+                <li class="divider"></li>
+                <li><a href="https://ap2.salesforce.com/secur/logout.jsp">Logout</a></li>
+            </ul>
+        </li>
+       
+        </ul>
+    </div>
+</div>
+<div class="container">
+  
+  <div class="text-center">
+    <h1>Bootstrap Template</h1>
+      </div>
+      
+   </div>
+    
+
+</body>
+</html>
+
+</apex:page>

@@ -1,0 +1,27 @@
+<apex:page controller="WrapperClass">
+  <apex:form >
+      <apex:pageBlock >
+          Enter Number:<apex:inputtext value="{!myInputNumber}"/><br/>
+          
+          <apex:commandButton value="submit" action="{!runWrapperMethod}"/>
+          
+          <apex:pageblocktable value="{!allWCs}" var="anyName">
+              
+              <apex:column >
+                  <apex:inputCheckbox value="{!anyName.b}"/>
+              </apex:column>   
+              
+              <apex:column value="{!anyName.i}"/>
+              
+
+              <apex:column value="{!anyName.o}"/>
+
+          </apex:pageblocktable>
+          <apex:commandButton value="Calculate" action="{!calculateData}"/><br/>
+          
+          your output is:{!myoutPut}
+          
+          
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

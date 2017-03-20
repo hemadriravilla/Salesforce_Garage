@@ -1,0 +1,9 @@
+<apex:page controller="multipleOP">
+    <apex:form >
+        Enter Number:<apex:inputText value="{!myinputvalue}"/><br/>
+        <apex:commandButton value="Submit" action="{!myLogic}"/><br/>
+        
+        Your output is:<apex:outputText value="{!myOutputValue}"/>
+        
+    </apex:form>
+</apex:page>

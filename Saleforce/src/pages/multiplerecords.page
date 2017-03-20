@@ -1,0 +1,36 @@
+<apex:page controller="MultiplePatients">
+  <apex:form id="xyz">
+  
+   <apex:actionstatus id="abc">
+        <apex:facet name="start">
+            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                <span class="waitingDescription">Processing...</span>
+                </div>
+            </div>
+        </apex:facet>
+      </apex:actionstatus>
+      <apex:pageBlock >          
+          <apex:pageBlockTable value="{!StudentFeeDetails}" var="SD">
+              <apex:column headerValue="Student NAme">
+                  <apex:inputfield value="{!SD.Student__c}"/>
+              </apex:column>
+              <apex:column headerValue="Current Fee">
+                  <apex:inputfield value="{!SD.Current_Fee_Pay__c}"/>
+              </apex:column>
+               <apex:column headerValue="Mode Of PAyment">
+                  <apex:inputfield value="{!SD.Mode_Of_Payment__c}"/>
+              </apex:column>
+              <apex:column headerValue="Month">
+                  <apex:inputfield value="{!SD.Month__c}"/>
+              </apex:column>
+          </apex:pageBlockTable>
+          <apex:pageBlockButtons location="bottom" >
+              <apex:commandButton value="+" action="{!AddrowMethod}" immediate="true" reRender="xyz" status="abc"/>
+              <apex:commandButton value="Save" action="{!CustomSave}" reRender="xyz" status="abc"/>
+              <apex:commandButton value="-" action="{!RemoveRowMethod}" immediate="true" reRender="xyz" status="abc" />
+          </apex:pageBlockButtons>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

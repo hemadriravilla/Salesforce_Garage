@@ -1,0 +1,13 @@
+<apex:page controller="searchController">
+
+<apex:form id="searchForm">
+    <apex:pageBlock >
+        <apex:pageBlockSection id="objSelectBlock" title="List Of SObject In My ORG">
+            <apex:selectList value="{!objName}" size="1">
+                <apex:selectOptions value="{!objectSelect}"/>
+            </apex:selectList>
+            <apex:commandButton value="get fields" action="{!objname}"/>
+        </apex:pageBlockSection> 
+    </apex:pageBlock>
+</apex:form>
+</apex:page>

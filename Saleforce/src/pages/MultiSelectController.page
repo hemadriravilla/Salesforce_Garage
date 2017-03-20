@@ -1,0 +1,144 @@
+<apex:page standardController="Lead" extensions="MultiSelectController" >
+<script>
+function clickAdd(){
+Refresh();
+}
+function clickRemove(){
+Remove();
+}
+function clickChildAdd(){
+AddChild();
+}
+function clickChildRemove(){
+RemoveChild();
+}
+
+</script>
+<style>
+        .sidebarCollapsed #sidebarDiv {
+            display: none;
+        }
+        .rightAligned{
+            text-align: right;
+        }
+        .leftAligned{
+            text-align:left;
+        }
+        .centerAligned{
+            text-align : center;
+        }
+        .centerAligned p{
+            white-space: normal;
+            margin:0;
+            padding:0;
+            min-width:100px;
+        }
+        .headerRow{
+            vertical-align:middle;
+        }
+        .label{
+        width:100%;
+        font-weight:bold;
+        float:left;
+        }
+        .multilist{
+            float:left;
+            vertical-align:middle
+        }
+        .multilist p {
+          padding: 0;
+          text-align: center;
+          white-space: normal;
+          width: 50px;
+          margin:0;
+        }
+        .multilist .btn{
+        margin-top:3px;
+        margin-left:10px;
+        margin-right:10px;
+        }
+        .detailList .empty{
+            display:none;
+        }
+    </style>
+<apex:form id="form1">
+<apex:actionstatus id="actionstatus">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                    <div class="waitingHolder" style="top: 100px; width: 91px;">
+                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                    <span class="waitingDescription">Processing...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+
+<apex:outputPanel id="panel1" >
+
+                            <div style="background-color:#00FFFF;border-radius:20px;">
+                            <center>
+                            <br/>
+                            <apex:actionFunction action="{!actionUpdatePicklistVals}" name="Refresh" rerender="panel1" status="actionstatus"/>
+                            <apex:actionFunction action="{!actionRemovePicklistVals}" name="Remove" rerender="panel1" status="actionstatus" />
+
+                            <apex:actionFunction action="{!addChildPicklistVals}" name="AddChild" rerender="panel1" status="actionstatus" />
+                            <apex:actionFunction action="{!RemoveChildPicklistVals}" name="RemoveChild" rerender="panel1" status="actionstatus" />
+
+                            <Table>
+                            <TR><TD colspan="2"><b>Ecosystem:</b></TD></TR>
+                            <TR><TD><b> Available</b></TD><TD></TD><TD><b> Chosen</b></TD></TR>
+
+            
+<TR><TD>
+
+<apex:selectList value="{!parentPicklistVal}" multiselect="true" size="5" style="width:250px;hight:500px">
+                <apex:selectOptions value="{!parentPicklistOptions}" />
+                
+            </apex:selectList>
+</TD><TD><br></br><a href="#" title="Add"><img src="/s.gif" alt="Add"  class="picklistArrowRight" onclick="clickAdd()" style="cursor:pointer;" title="Add" reRender="ajaxrequest"/></a>
+<br></br><br></br><a href="#" title="Remove"><img src="/s.gif" alt="Remove"  class="picklistArrowLeft" onclick="clickRemove()" style="cursor:pointer;" title="Remove" reRender="ajaxrequest" /></a>
+</TD><TD>
+<apex:selectList value="{!selectedparentPicklistVal}" multiselect="true" size="5" style="width:250px;hight:500px">
+                <apex:selectOptions value="{!SelectedParentPicklistOptions}" />
+                
+                
+            </apex:selectList>
+</TD></TR>
+
+
+
+
+   
+</Table>
+
+<Table>
+<TR><TD colspan="2"><b>Ecosystem Living Beings:</b></TD></TR>
+<TR><TD><b> Available</b></TD><TD></TD><TD><b> Chosen</b></TD></TR>
+
+            
+<TR><TD>
+<apex:selectList value="{!childPicklistVal}" multiselect="true" size="5" style="width:250px">
+                <apex:selectOptions value="{!ChildPicklistOptions}" />
+                
+            </apex:selectList>
+</TD><TD><br></br><a href="#" title="Add"><img src="/s.gif" alt="Add"  class="picklistArrowRight" onclick="clickChildAdd()" style="cursor:pointer;" title="Add" reRender="ajaxrequest" /></a>
+<br></br><br></br><a href="#" title="Remove"><img src="/s.gif" alt="Remove"  class="picklistArrowLeft" onclick="clickChildRemove()" style="cursor:pointer;" title="Remove" reRender="ajaxrequest" /></a>
+</TD><TD>
+<apex:selectList value="{!selectedchildPicklistVal}" multiselect="true" size="5" style="width:250px">
+                <apex:selectOptions value="{!SelectedChildPicklistOptions}" />
+                
+                
+            </apex:selectList>
+</TD></TR>
+
+
+
+
+   
+</Table>
+<br/>
+</center>
+</div>
+</apex:outputPanel>
+</apex:form>     
+</apex:page>

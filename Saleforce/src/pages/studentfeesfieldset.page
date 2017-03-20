@@ -1,0 +1,42 @@
+<apex:page controller="studentfees" sidebar="false" title="FeesFieldset">
+    <apex:form >
+    <apex:actionstatus id="actionstatus">
+                                        <apex:facet name="start">
+                                            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                                                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                                                    <img class="waitingImage" src="/img/loading.gif"  title="Please Wait..." />
+                                                    <span class="waitingDescription">Processing...</span>
+                                                </div>
+                                            </div>
+                                        </apex:facet>
+                                    </apex:actionstatus>
+        <apex:pageBlock title="Student Detail">
+            
+            
+                  <apex:pageMessages id="showmsg"></apex:pageMessages>   
+             
+             <apex:pageBlockTable value="{!feeObj}" var="amount" >
+              
+                 <apex:repeat value="{!$ObjectType.Fees__c.fieldsets.feesfieldset}" var="fieldValue">
+                
+                     <apex:column >
+                       <apex:pageBlockSection >
+                      <apex:inputField value="{!amount[fieldValue]}"  style="width:100px"  />
+                          </apex:pageBlockSection>
+                       </apex:column>
+                         
+                 </apex:repeat>
+                   
+             </apex:pageBlockTable>
+              
+             
+                     <div align="center" draggable="false" >
+                     <apex:commandButton value="+" action="{!AddrowMethod}" immediate="true"  status="actionstatus"/>
+                            
+            <apex:commandButton value="save" action="{!save}" style="width:90px" rerender="showmsg"  status="actionstatus"/>
+            <apex:commandButton value="-" action="{!RemoveRowMethod}" immediate="true"  status="actionstatus"/>
+         </div>
+         
+         </apex:pageblock>
+ </apex:form>
+</apex:page>

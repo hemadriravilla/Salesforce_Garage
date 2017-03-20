@@ -1,0 +1,73 @@
+<apex:page controller="importDataFromCSVController" sidebar="false">
+
+     <apex:stylesheet value="{!URLFOR($Resource.CSS1)}"/>
+     <apex:stylesheet value="{!URLFOR($Resource.CSS2)}"/>
+     
+     <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <apex:includeScript value="{!$Resource.JS1}"/>
+      <apex:includeScript value="{!$Resource.JS2}"/>
+      <apex:includeScript value="{!$Resource.JS3}"/>
+      
+      <script>
+         $(document).ready(function() {
+                $('#example').dataTable();
+         } );        
+        
+     </script>
+    
+    <apex:form >
+            <apex:actionstatus id="someName">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                    <div class="waitingHolder" style="top: 100px; width: 91px;">
+                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                    <span class="waitingDescription">Processing...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+        
+        <apex:pagemessages />
+        
+        <apex:pageBlock >
+            <apex:pageBlockSection columns="4">                       
+                  <apex:inputFile value="{!csvFileBody}"  filename="{!csvAsString}"/>
+                  <apex:actionSupport event="onchange" action="{!importCSVFile}" reRender="out" status="someName"   />
+                  <apex:commandButton value="import accounts" action="{!importCSVFile}" rendered="true" status="someName" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:outputPanel rendered="{!renderedVariable}" >
+        <table id="example"  class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Account No</th>
+                <th>Type</th>
+                <th>Account SourceAge</th>
+                <th>Industry</th>                
+            </tr>
+        </thead>
+        <tbody>
+           <apex:repeat value="{!accList}" var="acc" >
+           <tr>
+             <td>{!acc.name}</td>
+              <td>{!acc.Account_No__c}</td>
+             <td> {!acc.type__c}</td>
+             <td>{!acc.Account_Source__c}</td>
+             <td> {!acc.Industry__c}</td>
+            </tr>
+          </apex:repeat>
+          </tbody>
+         </table>
+         <apex:commandButton value="submit" action="{!savedata}"/>
+     </apex:outputPanel>
+     
+   </apex:form>
+</apex:page>
